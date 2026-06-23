@@ -31,7 +31,7 @@
 import CoreGraphics
 import Foundation
 
-import SwiftImageReadWrite
+import SwiftImageReadWriteKit
 
 #if os(macOS)
 import AppKit.NSBezierPath

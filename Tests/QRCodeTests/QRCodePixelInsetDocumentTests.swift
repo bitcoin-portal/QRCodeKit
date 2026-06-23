@@ -18,7 +18,7 @@
 //
 
 import XCTest
-import SwiftImageReadWrite
+import SwiftImageReadWriteKit
 
 @testable import QRCode
 

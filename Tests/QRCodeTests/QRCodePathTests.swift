@@ -1,7 +1,7 @@
 import XCTest
 @testable import QRCode
 
-import SwiftImageReadWrite
+import SwiftImageReadWriteKit
 
 //private let trc = try! TestFilesContainer(named: "QRCodePathTests")
 private let outputFolder = try! testResultsContainer.subfolder(with: "QRCodePathTests")

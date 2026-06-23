@@ -19,7 +19,7 @@
 
 import CoreGraphics
 import Foundation
-import SwiftImageReadWrite
+import SwiftImageReadWriteKit
 
 public extension QRCode {
 	/// A QRCode logo template

@@ -20,7 +20,7 @@
 import CoreGraphics
 import Foundation
 
-import SwiftImageReadWrite
+import SwiftImageReadWriteKit
 
 // MARK: - CGImage
 

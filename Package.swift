@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-	name: "QRCode",
+	name: "BitcoinQRCode",
 	platforms: [
 		.macOS(.v10_13),
 		.iOS(.v11),
@@ -11,77 +11,57 @@ let package = Package(
 		.watchOS(.v6)
 	],
 	products: [
-		// QR Code generation library
-		.library(name: "QRCode", targets: ["QRCode"]),
-		.library(name: "QRCodeStatic", type: .static, targets: ["QRCode"]),
-		.library(name: "QRCodeDynamic", type: .dynamic, targets: ["QRCode"]),
-
-		// QR Code video detection library
-		.library(name: "QRCodeDetector", type: .dynamic, targets: ["QRCodeDetector"]),
+		.library(name: "BitcoinQRCode", targets: ["BitcoinQRCode"]),
+		.library(name: "BitcoinQRCodeStatic", type: .static, targets: ["BitcoinQRCode"]),
+		.library(name: "BitcoinQRCodeDynamic", type: .dynamic, targets: ["BitcoinQRCode"]),
+		.library(name: "BitcoinQRCodeDetector", type: .dynamic, targets: ["QRCodeDetector"]),
 	],
 	dependencies: [
-		// Swift argument parser is used for the command-line application
 		.package(
 			name: "swift-argument-parser",
 			url: "https://github.com/apple/swift-argument-parser",
 			.upToNextMinor(from: "0.4.3")
 		),
-
-		// A 3rd-party QR code generation library for watchOS, forked from https://github.com/fwcd/swift-qrcode-generator
 		.package(
 			url: "https://github.com/dagronf/swift-qrcode-generator",
 			.upToNextMinor(from: "2.0.2")
 		),
-
-		// A microframework for cleaning handling image conversion
 		.package(
-			url: "https://github.com/dagronf/SwiftImageReadWrite",
-			.upToNextMinor(from: "1.9.1")
+			url: "https://github.com/bitcoin-portal/SwiftImageReadWriteKit",
+			from: "1.9.0"
 		),
 	],
 	targets: [
-		// The QRCode core library
 		.target(
-			name: "QRCode",
+			name: "BitcoinQRCode",
 			dependencies: [
-				"SwiftImageReadWrite",
-				.product(
-					name: "QRCodeGenerator",
-					package: "swift-qrcode-generator"
-				),
+				.product(name: "SwiftImageReadWriteKit", package: "SwiftImageReadWriteKit"),
+				.product(name: "QRCodeGenerator", package: "swift-qrcode-generator"),
 			],
+			path: "Sources/QRCode",
 			resources: [
 				.copy("PrivacyInfo.xcprivacy"),
 			]
-//			,
-//			swiftSettings: [
-//				.enableUpcomingFeature("ExistentialAny")
-//			]
 		),
-
-		// The QR code detector library
 		.target(
 			name: "QRCodeDetector",
 			resources: [
 				.copy("PrivacyInfo.xcprivacy"),
-			]),
-
-		// the qrcodegen command-line tool
+			]
+		),
 		.executableTarget(
 			name: "qrcodegen",
 			dependencies: [
-				"QRCode",
+				"BitcoinQRCode",
 				.product(name: "ArgumentParser", package: "swift-argument-parser"),
 			],
 			resources: [
 				.copy("PrivacyInfo.xcprivacy"),
 			]
 		),
-
-		// testing target
 		.testTarget(
 			name: "QRCodeTests",
-			dependencies: ["QRCode"],
+			dependencies: ["BitcoinQRCode"],
 			resources: [
 				.process("Resources"),
 			]

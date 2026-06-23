@@ -1,7 +1,7 @@
 import XCTest
 @testable import QRCode
 
-import SwiftImageReadWrite
+import SwiftImageReadWriteKit
 internal let testResultsContainer = try! TestFilesContainer(named: "QRCodeTests")
 
 final class QRCodeTests: XCTestCase {
