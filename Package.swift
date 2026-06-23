@@ -28,7 +28,7 @@ let package = Package(
 		),
 		.package(
 			url: "https://github.com/bitcoin-portal/SwiftImageReadWriteKit",
-			from: "1.9.0"
+			from: "1.9.3"
 		),
 	],
 	targets: [
