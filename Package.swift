@@ -24,7 +24,7 @@ let package = Package(
 		),
 		.package(
 			url: "https://github.com/bitcoin-portal/SwiftQRCodeGenerator",
-			.upToNextMinor(from: "2.0.2")
+			from: "2.0.3"
 		),
 		.package(
 			url: "https://github.com/bitcoin-portal/SwiftImageReadWriteKit",
@@ -36,7 +36,7 @@ let package = Package(
 			name: "BitcoinQRCode",
 			dependencies: [
 				.product(name: "SwiftImageReadWriteKit", package: "SwiftImageReadWriteKit"),
-				.product(name: "QRCodeGenerator", package: "SwiftQRCodeGenerator"),
+				.product(name: "BitcoinQRCodeGenerator", package: "SwiftQRCodeGenerator"),
 			],
 			path: "Sources/QRCode",
 			resources: [

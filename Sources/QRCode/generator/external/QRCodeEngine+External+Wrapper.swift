@@ -18,7 +18,7 @@
 //
 
 import Foundation
-import QRCodeGenerator
+import BitcoinQRCodeGenerator
 
 // We have to separate this out as there is a namespace clash between our QRCode module
 // and the QRCodeGenerator module's class type.
@@ -28,7 +28,7 @@ extension QRCodeEngineExternal {
 	func _generate(_ data: Data, errorCorrection: String) -> [[Bool]]? {
 		guard
 			let mappedECC = mapECC(errorCorrection),
-			let qrCode = try? QRCodeGenerator.QRCode.encode(binary: [UInt8](data), ecl: mappedECC)
+			let qrCode = try? BitcoinQRCodeGenerator.QRCode.encode(binary: [UInt8](data), ecl: mappedECC)
 		else {
 			return nil
 		}
@@ -38,7 +38,7 @@ extension QRCodeEngineExternal {
 	func _generate(_ text: String, errorCorrection: String) -> [[Bool]]? {
 		guard
 			let mappedECC = mapECC(errorCorrection),
-			let qrCode = try? QRCodeGenerator.QRCode.encode(text: text, ecl: mappedECC)
+			let qrCode = try? BitcoinQRCodeGenerator.QRCode.encode(text: text, ecl: mappedECC)
 		else {
 			return nil
 		}
@@ -59,7 +59,7 @@ extension QRCodeEngineExternal {
 		}
 	}
 
-	fileprivate func mapResult(_ qrCode: QRCodeGenerator.QRCode) -> [[Bool]]? {
+	fileprivate func mapResult(_ qrCode: BitcoinQRCodeGenerator.QRCode) -> [[Bool]]? {
 		var result = Array<[Bool]>(
 			repeating: Array<Bool>(repeating: false, count: qrCode.size + 2),
 			count: qrCode.size + 2)
