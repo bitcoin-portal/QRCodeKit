@@ -24,7 +24,7 @@ let package = Package(
 		),
 		.package(
 			url: "https://github.com/bitcoin-portal/SwiftQRCodeGenerator",
-			from: "2.0.3"
+			from: "2.0.4"
 		),
 		.package(
 			url: "https://github.com/bitcoin-portal/SwiftImageReadWriteKit",
